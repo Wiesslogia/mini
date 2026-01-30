@@ -4,23 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Store</title>
-    <style>
-        #products-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            padding: 20px;
-            border: 1px solid black;
-            padding: 15px;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Product Store</h1>
-    <div id="products-container" >
-        <p>Loading products...</p>
-    </div>
+    <main>
+        <div id="search-container">
+            <input type="search" id="search" placeholder="Search products...">
+            <button id="sbtn">Search</button>
+        </div>
+        <h1>Product Store</h1>
+        <div id="products-container">
+            <p>Loading products...</p>
+        </div>
+    </main>
     
     <script src="Script.js"></script>
 </body>
