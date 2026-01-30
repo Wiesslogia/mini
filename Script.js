@@ -14,3 +14,26 @@ fetch("https://dummyjson.com/products")
     });
   })
   .catch(error => console.error("Error", error));
+
+
+
+  const searchbtn=document.getElementById("sbtn");
+  const searchInput= document.getElementById("search");
+
+  searchbtn.addEventListener("click", ()=>{
+    const query = searchInput.value;
+    if(!query) return;
+    console.log(query);
+    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+    searchInput.value="";
+  });
+
+  // Allow Enter key to trigger search
+  searchInput.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter"){
+      e.preventDefault();
+      searchbtn.click();
+    }
+  });
+
+
