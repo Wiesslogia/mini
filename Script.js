@@ -1,39 +1,48 @@
 fetch("https://dummyjson.com/products")
-  .then(res => res.json())
-  .then(data => {
-    var container = document.getElementById("products-container");
+  .then((res) => res.json())
+  .then((data) => {
+    const container = document.getElementById("products-container");
+    if (!container) return;
     container.innerHTML = "";
-    data.products.forEach(product => {
-      container.innerHTML += `
-        <div>
-          <img src="${product.thumbnail}" width="100%" >
-          <h3>${product.title}</h3>
-          <p><b>Price:</b> $${product.price}</p>
-        </div>
+
+    data.products.forEach((product) => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <img src="${product.thumbnail}" width="100%" alt="${product.title}">
+        <h3>${product.title}</h3>
+        <p><b>Price:</b> $${product.price}</p>
       `;
+
+      card.addEventListener("click", () => {
+        window.location.href = `product.html?id=${product.id}`;
+      });
+
+      container.appendChild(card);
     });
   })
-  .catch(error => console.error("Error", error));
+  .catch((error) => console.error("Error", error));
 
+const searchbtn = document.getElementById("sbtn");
+const searchInput = document.getElementById("search");
 
+if (searchbtn && searchInput) {
+  searchbtn.addEventListener("click", () => {
+    const query = searchInput.value.trim();
+    if (!query) return;
 
-  const searchbtn=document.getElementById("sbtn");
-  const searchInput= document.getElementById("search");
-
-  searchbtn.addEventListener("click", ()=>{
-    const query = searchInput.value;
-    if(!query) return;
-    console.log(query);
-    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
-    searchInput.value="";
-  });
-
-  // Allow Enter key to trigger search
-  searchInput.addEventListener("keydown", (e)=>{
-    if(e.key === "Enter"){
-      e.preventDefault();
-      searchbtn.click();
+    // save history (simple append)
+    try {
+      const key = "searchHistory";
+      const history = JSON.parse(localStorage.getItem(key)) || [];
+      history.push({ query, time: Date.now() });
+      localStorage.setItem(key, JSON.stringify(history));
+    } catch (e) {
+      console.error("Failed to save search history", e);
     }
+
+    window.location.href = `search.html?q=${encodeURIComponent(query)}`;
+    searchInput.value = "";
   });
-
-
+}
