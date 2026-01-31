@@ -45,6 +45,12 @@ main {
     margin-bottom: 20px;
     flex-wrap: wrap;
 }
+#product-list {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
 
 #search {
     flex: 1;
