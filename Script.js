@@ -26,13 +26,14 @@ fetch("https://dummyjson.com/products")
 
 const searchbtn = document.getElementById("sbtn");
 const searchInput = document.getElementById("search");
+const viewHistoryBtn = document.getElementById("viewHistory");
+const viewAllBtn = document.getElementById("viewAll");
 
 if (searchbtn && searchInput) {
   searchbtn.addEventListener("click", () => {
     const query = searchInput.value.trim();
     if (!query) return;
 
-    // save history (simple append)
     try {
       const key = "searchHistory";
       const history = JSON.parse(localStorage.getItem(key)) || [];
@@ -44,5 +45,17 @@ if (searchbtn && searchInput) {
 
     window.location.href = `search.html?q=${encodeURIComponent(query)}`;
     searchInput.value = "";
+  });
+}
+
+if (viewHistoryBtn) {
+  viewHistoryBtn.addEventListener("click", () => {
+    window.location.href = "history.html";
+  });
+}
+
+if (viewAllBtn) {
+  viewAllBtn.addEventListener("click", () => {
+    window.location.href = "pagination.html";
   });
 }
