@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Search History</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    #historyList { padding: 16px; max-width:800px; margin:auto; }
+    .history-item { padding:8px 0; border-bottom:1px solid #eee; }
+    .controls { max-width:800px; margin:auto; padding:12px; display:flex; gap:8px; align-items:center; }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">← Back to Products</a>
+  </header>
+
+  <main>
+    <h1 style="text-align:center;margin:16px 0">Your Search History</h1>
+    <div class="controls">
+      <button id="clearHistory">Clear History</button>
+    </div>
+    <div id="historyList"></div>
+  </main>
+
+  <script src="history.js"></script>
+</body>
+</html>
